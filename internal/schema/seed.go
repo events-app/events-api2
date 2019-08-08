@@ -18,9 +18,20 @@ import (
 // may need to be broken up.
 
 const seeds = `
-INSERT INTO cards (card_id, name, cost, quantity, date_created, date_updated) VALUES
-	('a2b0639f-2cc6-44b8-b97b-15d69dbb511e', 'Comic Books', 50, 42, '2019-01-01 00:00:01.000001+00', '2019-01-01 00:00:01.000001+00'),
-	('72f8b983-3eb4-48db-9ed0-e45cc6bd716b', 'McDonalds Toys', 75, 120, '2019-01-01 00:00:02.000001+00', '2019-01-01 00:00:02.000001+00')
+INSERT INTO cards (card_id, name, content, date_created, date_updated) VALUES
+	('a2b0639f-2cc6-44b8-b97b-15d69dbb511e', 'main', '# The New Event
+
+	The New Event is the best event ever.
+	You should definitelly attend!
+
+	+ Register at [The New Event](http://thenewevent.com/).
+	+ Come
+	+ Have fun
+
+	We are waiting for you!', '2019-05-26 00:00:02.000001+00', '2019-05-26 00:00:02.000001+00'),
+	('72f8b983-3eb4-48db-9ed0-e45cc6bd716b', 'secured', 'You are allowed to see this.', '2019-05-26 00:00:02.000001+00', '2019-05-26 00:00:02.000001+00'),
+	('85f6fb09-eb05-4874-ae39-82d1a30fe0d7', 'other', 'Other content', '2019-05-26 00:00:02.000001+00', '2019-05-26 00:00:02.000001+00'),
+	('a235be9e-ab5d-44e6-a987-fa1c749264c7', other2','Other content 2', '2019-05-26 00:00:02.000001+00', '2019-05-26 00:00:02.000001+00')
 	ON CONFLICT DO NOTHING;
 
 --INSERT INTO sales (sale_id, card_id, quantity, paid, date_created) VALUES

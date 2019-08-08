@@ -20,7 +20,7 @@ var migrations = []darwin.Migration{
 CREATE TABLE cards (
 	card_id   UUID,
 	name         TEXT,
-	cost         INT,
+	content         TEXT,
 	quantity     INT,
 	date_created TIMESTAMP,
 	date_updated TIMESTAMP,
@@ -44,7 +44,7 @@ CREATE TABLE cards (
 // );`,
 // 	},
 	{
-		Version:     3,
+		Version:     2,
 		Description: "Add users",
 		Script: `
 CREATE TABLE users (
@@ -61,10 +61,10 @@ CREATE TABLE users (
 );`,
 	},
 	{
-		Version:     4,
-		Description: "Add user column to products",
+		Version:     3,
+		Description: "Add user column to cards",
 		Script: `
-ALTER TABLE products
+ALTER TABLE cards
 	ADD COLUMN user_id UUID DEFAULT '00000000-0000-0000-0000-000000000000'
 `,
 	},

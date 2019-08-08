@@ -4,24 +4,20 @@ import (
 	"time"
 )
 
-// Card is an item we sell.
+// Card is an datastructure for a Card object.
 type Card struct {
 	ID          string    `db:"card_id" json:"id"`
 	Name        string    `db:"name" json:"name"`
-	Cost        int       `db:"cost" json:"cost"`
-	Quantity    int       `db:"quantity" json:"quantity"`
-	Sold        int       `db:"sold" json:"sold"`
-	Revenue     int       `db:"revenue" json:"revenue"`
+	Content     string    `db:"content" json:"content"`
 	UserID      string    `db:"user_id" json:"user_id"`
-	DateCreated time.Time `db:"date_created" json:"date_created"`
-	DateUpdated time.Time `db:"date_updated" json:"date_updated"`
+	DateCreated time.Time `db:"date_created" json:"dateCreated"`
+	DateUpdated time.Time `db:"date_updated" json:"dateUpdated"`
 }
 
-// NewCard is what we require from clients when adding a Card.
+// NewCard is what we require from admin when adding a Card.
 type NewCard struct {
 	Name     string `json:"name" validate:"required"`
-	Cost     int    `json:"cost" validate:"gte=0"`
-	Quantity int    `json:"quantity" validate:"gte=1"`
+	Content        string       `json:"content"`
 }
 
 // UpdateCard defines what information may be provided to modify an
@@ -32,8 +28,7 @@ type NewCard struct {
 // we make exceptions around marshalling/unmarshalling.
 type UpdateCard struct {
 	Name     *string `json:"name"`
-	Cost     *int    `json:"cost" validate:"omitempty,gte=0"`
-	Quantity *int    `json:"quantity" validate:"omitempty,gte=1"`
+	Content        *string       `json:"content"`
 }
 
 // // Sale represents one item of a transaction where some amount of a card was
