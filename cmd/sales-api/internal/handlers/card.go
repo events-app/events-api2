@@ -22,8 +22,8 @@ type Cards struct {
 }
 
 // List gets all Cards from the service layer.
-func (p *Cards) List(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
-	list, err := card.List(ctx, p.db)
+func (c *Cards) List(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+	list, err := card.List(ctx, c.db)
 	if err != nil {
 		return errors.Wrap(err, "getting card list")
 	}
@@ -33,18 +33,18 @@ func (p *Cards) List(ctx context.Context, w http.ResponseWriter, r *http.Request
 
 // Create decodes the body of a request to create a new card. The full
 // card with generated fields is sent back in the response.
-func (p *Cards) Create(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func (c *Cards) Create(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	claims, ok := ctx.Value(auth.Key).(auth.Claims)
 	if !ok {
 		return errors.New("claims missing from context")
 	}
 
-	var np card.NewCard
-	if err := web.Decode(r, &np); err != nil {
+	var nc card.NewCard
+	if err := web.Decode(r, &nc); err != nil {
 		return errors.Wrap(err, "decoding new card")
 	}
 
-	prod, err := card.Create(ctx, p.db, claims, np, time.Now())
+	prod, err := card.Create(ctx, c.db, claims, nc, time.Now())
 	if err != nil {
 		return errors.Wrap(err, "creating new card")
 	}
@@ -53,10 +53,10 @@ func (p *Cards) Create(ctx context.Context, w http.ResponseWriter, r *http.Reque
 }
 
 // Retrieve finds a single card identified by an ID in the request URL.
-func (p *Cards) Retrieve(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func (c *Cards) Retrieve(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	id := chi.URLParam(r, "id")
 
-	prod, err := card.Retrieve(ctx, p.db, id)
+	prod, err := card.Retrieve(ctx, c.db, id)
 	if err != nil {
 		switch err {
 		case card.ErrNotFound:
@@ -73,7 +73,7 @@ func (p *Cards) Retrieve(ctx context.Context, w http.ResponseWriter, r *http.Req
 
 // Update decodes the body of a request to update an existing card. The ID
 // of the card is part of the request URL.
-func (p *Cards) Update(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func (c *Cards) Update(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	id := chi.URLParam(r, "id")
 
 	var update card.UpdateCard
@@ -86,7 +86,7 @@ func (p *Cards) Update(ctx context.Context, w http.ResponseWriter, r *http.Reque
 		return errors.New("claims missing from context")
 	}
 
-	if err := card.Update(ctx, p.db, claims, id, update, time.Now()); err != nil {
+	if err := card.Update(ctx, c.db, claims, id, update, time.Now()); err != nil {
 		switch err {
 		case card.ErrNotFound:
 			return web.NewRequestError(err, http.StatusNotFound)
@@ -103,10 +103,10 @@ func (p *Cards) Update(ctx context.Context, w http.ResponseWriter, r *http.Reque
 }
 
 // Delete removes a single card identified by an ID in the request URL.
-func (p *Cards) Delete(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func (c *Cards) Delete(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	id := chi.URLParam(r, "id")
 
-	if err := card.Delete(ctx, p.db, id); err != nil {
+	if err := card.Delete(ctx, c.db, id); err != nil {
 		switch err {
 		case card.ErrInvalidID:
 			return web.NewRequestError(err, http.StatusBadRequest)
