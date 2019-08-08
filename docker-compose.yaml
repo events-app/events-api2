@@ -12,7 +12,7 @@ services:
 
   # This starts a local PostgreSQL DB.
   db:
-    container_name: sales_db
+    container_name: cards_db
     networks:
       - shared-network
     image: postgres:11.1-alpine

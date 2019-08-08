@@ -44,9 +44,9 @@ func run() error {
 		Args conf.Args
 	}
 
-	if err := conf.Parse(os.Args[1:], "EVENTS", &cfg); err != nil {
+	if err := conf.Parse(os.Args[1:], "CARDS", &cfg); err != nil {
 		if err == conf.ErrHelpWanted {
-			usage, err := conf.Usage("EVENTS", &cfg)
+			usage, err := conf.Usage("CARDS", &cfg)
 			if err != nil {
 				return errors.Wrap(err, "generating usage")
 			}

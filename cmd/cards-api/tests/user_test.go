@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/events-app/events-api2/cmd/sales-api/internal/handlers"
+	"github.com/events-app/events-api2/cmd/cards-api/internal/handlers"
 	"github.com/events-app/events-api2/internal/tests"
 )
 

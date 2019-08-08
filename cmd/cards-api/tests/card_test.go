@@ -10,7 +10,7 @@ import (
 
 	// NOTE: Models should not be imported, we want to test the exact JSON. We
 	// make the comparison process easier using the go-cmp library.
-	"github.com/events-app/events-api2/cmd/sales-api/internal/handlers"
+	"github.com/events-app/events-api2/cmd/cards-api/internal/handlers"
 	"github.com/events-app/events-api2/internal/tests"
 	"github.com/google/go-cmp/cmp"
 )

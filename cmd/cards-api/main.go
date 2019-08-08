@@ -14,7 +14,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/events-app/events-api2/cmd/sales-api/internal/handlers"
+	"github.com/events-app/events-api2/cmd/cards-api/internal/handlers"
 	"github.com/events-app/events-api2/internal/platform/auth"
 	"github.com/events-app/events-api2/internal/platform/conf"
 	"github.com/events-app/events-api2/internal/platform/database"
