@@ -21,7 +21,6 @@ CREATE TABLE cards (
 	card_id   UUID,
 	name         TEXT,
 	content         TEXT,
-	quantity     INT,
 	date_created TIMESTAMP,
 	date_updated TIMESTAMP,
 

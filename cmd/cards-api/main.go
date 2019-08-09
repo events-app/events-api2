@@ -34,7 +34,7 @@ func run() error {
 	// =========================================================================
 	// Logging
 
-	log := log.New(os.Stdout, "EVENTS : ", log.LstdFlags|log.Lmicroseconds|log.Lshortfile)
+	log := log.New(os.Stdout, "CARDS : ", log.LstdFlags|log.Lmicroseconds|log.Lshortfile)
 
 	// =========================================================================
 	// Configuration
@@ -61,9 +61,9 @@ func run() error {
 		}
 	}
 
-	if err := conf.Parse(os.Args[1:], "EVENTS", &cfg); err != nil {
+	if err := conf.Parse(os.Args[1:], "CARDS", &cfg); err != nil {
 		if err == conf.ErrHelpWanted {
-			usage, err := conf.Usage("EVENTS", &cfg)
+			usage, err := conf.Usage("CARDS", &cfg)
 			if err != nil {
 				return errors.Wrap(err, "generating config usage")
 			}

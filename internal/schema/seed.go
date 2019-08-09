@@ -31,7 +31,7 @@ INSERT INTO cards (card_id, name, content, date_created, date_updated) VALUES
 	We are waiting for you!', '2019-05-26 00:00:02.000001+00', '2019-05-26 00:00:02.000001+00'),
 	('72f8b983-3eb4-48db-9ed0-e45cc6bd716b', 'secured', 'You are allowed to see this.', '2019-05-26 00:00:02.000001+00', '2019-05-26 00:00:02.000001+00'),
 	('85f6fb09-eb05-4874-ae39-82d1a30fe0d7', 'other', 'Other content', '2019-05-26 00:00:02.000001+00', '2019-05-26 00:00:02.000001+00'),
-	('a235be9e-ab5d-44e6-a987-fa1c749264c7', other2','Other content 2', '2019-05-26 00:00:02.000001+00', '2019-05-26 00:00:02.000001+00')
+	('a235be9e-ab5d-44e6-a987-fa1c749264c7', 'other2', 'Other content 2', '2019-05-26 00:00:02.000001+00', '2019-05-26 00:00:02.000001+00')
 	ON CONFLICT DO NOTHING;
 
 --INSERT INTO sales (sale_id, card_id, quantity, paid, date_created) VALUES

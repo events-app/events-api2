@@ -1,0 +1,4 @@
+- Add menu
+- Add file upload
+- fix tests
+- enable modify/get data only for its user

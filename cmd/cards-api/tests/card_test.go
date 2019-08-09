@@ -59,7 +59,7 @@ func (c *CardTests) List(t *testing.T) {
 	if err := json.NewDecoder(resp.Body).Decode(&list); err != nil {
 		t.Fatalf("decoding: %s", err)
 	}
-
+	FIX
 	want := []map[string]interface{}{
 		{
 			"id":           "a2b0639f-2cc6-44b8-b97b-15d69dbb511e",
