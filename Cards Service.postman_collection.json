@@ -1,7 +1,7 @@
 {
 	"info": {
-		"name": "Garage Sale Service",
-		"_postman_id": "ba470c37-e9bc-c4fb-1007-408c68907376",
+		"_postman_id": "020608d8-0d6b-49e3-aa7a-80c6e311fe6a",
+		"name": "Cards Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,12 +11,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"type": "text/javascript",
+						"id": "de243047-78a7-45d6-bdbb-bcaf5baaeaf3",
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);",
 							"postman.setEnvironmentVariable(\"Token\", jsonData.token);",
 							""
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -47,7 +48,6 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "{{SERVER}}/v1/users/token",
 					"host": [
@@ -63,7 +63,7 @@
 			"response": []
 		},
 		{
-			"name": "List Products",
+			"name": "List Cards",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -77,22 +77,21 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
-					"raw": "{{SERVER}}/v1/products",
+					"raw": "{{SERVER}}/v1/cards",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"v1",
-						"products"
+						"cards"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get Product",
+			"name": "Get Card",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -106,15 +105,14 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
-					"raw": "{{SERVER}}/v1/products/a2b0639f-2cc6-44b8-b97b-15d69dbb511e",
+					"raw": "{{SERVER}}/v1/cards/a2b0639f-2cc6-44b8-b97b-15d69dbb511e",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"v1",
-						"products",
+						"cards",
 						"a2b0639f-2cc6-44b8-b97b-15d69dbb511e"
 					]
 				}
@@ -122,7 +120,7 @@
 			"response": []
 		},
 		{
-			"name": "Create Product",
+			"name": "Create Card",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -143,23 +141,23 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Puzzles\",\n\t\"cost\": 75,\n\t\"quantity\": 12\n}"
+					"raw": "{\n\t\"name\": \"Contact\",\n\t\"content\": \"Our address: 41 Street\"\n}"
 				},
 				"url": {
-					"raw": "{{SERVER}}/v1/products",
+					"raw": "{{SERVER}}/v1/cards",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"v1",
-						"products"
+						"cards"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Update Product",
+			"name": "Update Card",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -180,24 +178,24 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"comics\"\n}"
+					"raw": "{\n\t\"name\": \"contact (modified)\"\n}"
 				},
 				"url": {
-					"raw": "{{SERVER}}/v1/products/a2b0639f-2cc6-44b8-b97b-15d69dbb511e",
+					"raw": "{{SERVER}}/v1/cards/f6f41331-4b3b-433a-9773-e6e2d40e136c",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"v1",
-						"products",
-						"a2b0639f-2cc6-44b8-b97b-15d69dbb511e"
+						"cards",
+						"f6f41331-4b3b-433a-9773-e6e2d40e136c"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Delete McDonalds Toys",
+			"name": "Delete Contact Card",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -211,23 +209,22 @@
 				},
 				"method": "DELETE",
 				"header": [],
-				"body": {},
 				"url": {
-					"raw": "{{SERVER}}/v1/products/72f8b983-3eb4-48db-9ed0-e45cc6bd716b",
+					"raw": "{{SERVER}}/v1/cards/8f8bf481-369b-4de5-9394-c39c257abaa2",
 					"host": [
 						"{{SERVER}}"
 					],
 					"path": [
 						"v1",
-						"products",
-						"72f8b983-3eb4-48db-9ed0-e45cc6bd716b"
+						"cards",
+						"8f8bf481-369b-4de5-9394-c39c257abaa2"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "List Sales",
+			"name": "--List Sales",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -241,7 +238,6 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "{{SERVER}}/v1/products/a2b0639f-2cc6-44b8-b97b-15d69dbb511e/sales",
 					"host": [
@@ -258,7 +254,7 @@
 			"response": []
 		},
 		{
-			"name": "Add Sales",
+			"name": "--Add Sales",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -301,7 +297,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
 				"url": {
 					"raw": "{{SERVER}}/v1/health",
 					"host": [

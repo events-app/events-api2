@@ -87,7 +87,7 @@ func Retrieve(ctx context.Context, db *sqlx.DB, id string) (*Card, error) {
 	// 	WHERE p.card_id = $1
 	// 	GROUP BY p.card_id`
 
-	const q = `SELECT * FROM cards WHERE name = $1`
+	const q = `SELECT * FROM cards WHERE card_id = $1`
 	if err := db.GetContext(ctx, &c, q, id); err != nil {
 		if err == sql.ErrNoRows {
 			return nil, ErrNotFound
