@@ -25,3 +25,6 @@ docker-compose up -d
 ## Run the app then make requests.
 ./cards-api --db_disable-tls=1
 ```
+
+## Info
+All the endpoint addresses can be found in the Postman collection or in cmd/cards-api/internal/handlers/routes.go

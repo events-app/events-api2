@@ -1,4 +1,6 @@
 - Add menu
 - Add file upload
 - fix tests
-- enable modify/get data only for its user
+- Enable modify/get data only for its user
+- Add next steps, current is 32-ownership
+- Add dep
