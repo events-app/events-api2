@@ -309,6 +309,167 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "List Menus",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}/v1/menus",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"v1",
+						"menus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Menu",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}/v1/menus/a235be9e-ab5d-44e6-a987-fa1c749264c7",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"v1",
+						"menus",
+						"a235be9e-ab5d-44e6-a987-fa1c749264c7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Menu",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Menu 8\",\n\t\"cardID\": \"a235be9e-ab5d-44e6-a987-fa1c749264c7\"\n}"
+				},
+				"url": {
+					"raw": "{{SERVER}}/v1/menus",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"v1",
+						"menus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Menu",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"menu 8 (modified)\",\n\t\"cardID\": \"a2b0639f-2cc6-44b8-b97b-15d69dbb511e\"\n}"
+				},
+				"url": {
+					"raw": "{{SERVER}}/v1/menus/bb3a214a-d3a4-4b11-b4eb-fc52a1e1099d",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"v1",
+						"menus",
+						"bb3a214a-d3a4-4b11-b4eb-fc52a1e1099d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Menu",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}/v1/menus/bb3a214a-d3a4-4b11-b4eb-fc52a1e1099d",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"v1",
+						"menus",
+						"bb3a214a-d3a4-4b11-b4eb-fc52a1e1099d"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
