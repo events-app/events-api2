@@ -9,7 +9,7 @@ type Card struct {
 	ID          string    `db:"card_id" json:"id"`
 	Name        string    `db:"name" json:"name"`
 	Content     string    `db:"content" json:"content"`
-	UserID      string    `db:"user_id" json:"user_id"`
+	UserID      string    `db:"user_id" json:"userID"`
 	DateCreated time.Time `db:"date_created" json:"dateCreated"`
 	DateUpdated time.Time `db:"date_updated" json:"dateUpdated"`
 }

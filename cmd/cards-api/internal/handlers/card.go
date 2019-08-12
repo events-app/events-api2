@@ -44,19 +44,19 @@ func (c *Cards) Create(ctx context.Context, w http.ResponseWriter, r *http.Reque
 		return errors.Wrap(err, "decoding new card")
 	}
 
-	prod, err := card.Create(ctx, c.db, claims, nc, time.Now())
+	car, err := card.Create(ctx, c.db, claims, nc, time.Now())
 	if err != nil {
 		return errors.Wrap(err, "creating new card")
 	}
 
-	return web.Respond(ctx, w, &prod, http.StatusCreated)
+	return web.Respond(ctx, w, &car, http.StatusCreated)
 }
 
 // Retrieve finds a single card identified by an ID in the request URL.
 func (c *Cards) Retrieve(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	id := chi.URLParam(r, "id")
 
-	prod, err := card.Retrieve(ctx, c.db, id)
+	car, err := card.Retrieve(ctx, c.db, id)
 	if err != nil {
 		switch err {
 		case card.ErrNotFound:
@@ -68,7 +68,7 @@ func (c *Cards) Retrieve(ctx context.Context, w http.ResponseWriter, r *http.Req
 		}
 	}
 
-	return web.Respond(ctx, w, prod, http.StatusOK)
+	return web.Respond(ctx, w, car, http.StatusOK)
 }
 
 // Update decodes the body of a request to update an existing card. The ID
