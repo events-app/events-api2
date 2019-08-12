@@ -4,3 +4,4 @@
 - Enable modify/get data only for its user
 - Add next steps, current is 32-ownership
 - Add dep
+- Add GetCardOfMenu
