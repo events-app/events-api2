@@ -34,6 +34,12 @@ INSERT INTO cards (card_id, name, content, date_created, date_updated) VALUES
 	('a235be9e-ab5d-44e6-a987-fa1c749264c7', 'other2', 'Other content 2', '2019-05-26 00:00:02.000001+00', '2019-05-26 00:00:02.000001+00')
 	ON CONFLICT DO NOTHING;
 
+INSERT INTO menus (menu_id, name, card_id, date_created, date_updated) VALUES
+	('98b6d4b8-f04b-4c79-8c2e-a0aef46854b7', 'menu 1', 'a2b0639f-2cc6-44b8-b97b-15d69dbb511e', '2019-01-01 00:00:03.000001+00', '2019-01-01 00:00:03.000001+00'),
+	('85f6fb09-eb05-4874-ae39-82d1a30fe0d7', 'menu 2', '72f8b983-3eb4-48db-9ed0-e45cc6bd716b', '2019-01-01 00:00:04.000001+00', '2019-01-01 00:00:03.000001+00'),
+	('a235be9e-ab5d-44e6-a987-fa1c749264c7', 'menu 3', '85f6fb09-eb05-4874-ae39-82d1a30fe0d7', '2019-01-01 00:00:05.000001+00', '2019-01-01 00:00:03.000001+00')
+	ON CONFLICT DO NOTHING;
+
 --INSERT INTO sales (sale_id, card_id, quantity, paid, date_created) VALUES
 --	('98b6d4b8-f04b-4c79-8c2e-a0aef46854b7', 'a2b0639f-2cc6-44b8-b97b-15d69dbb511e', 2, 100, '2019-01-01 00:00:03.000001+00'),
 --	('85f6fb09-eb05-4874-ae39-82d1a30fe0d7', 'a2b0639f-2cc6-44b8-b97b-15d69dbb511e', 5, 250, '2019-01-01 00:00:04.000001+00'),

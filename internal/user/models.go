@@ -13,8 +13,8 @@ type User struct {
 	Email        string         `db:"email" json:"email"`
 	Roles        pq.StringArray `db:"roles" json:"roles"`
 	PasswordHash []byte         `db:"password_hash" json:"-"`
-	DateCreated  time.Time      `db:"date_created" json:"date_created"`
-	DateUpdated  time.Time      `db:"date_updated" json:"date_updated"`
+	DateCreated  time.Time      `db:"date_created" json:"dateCreated"`
+	DateUpdated  time.Time      `db:"date_updated" json:"dateUpdated"`
 }
 
 // NewUser contains information needed to create a new User.

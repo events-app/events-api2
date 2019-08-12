@@ -27,23 +27,23 @@ CREATE TABLE cards (
 	PRIMARY KEY (card_id)
 );`,
 	},
-// 	{
-// 		Version:     2,
-// 		Description: "Add sales",
-// 		Script: `
-// CREATE TABLE sales (
-// 	sale_id      UUID,
-// 	product_id   UUID,
-// 	quantity     INT,
-// 	paid         INT,
-// 	date_created TIMESTAMP,
-
-// 	PRIMARY KEY (sale_id),
-// 	FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
-// );`,
-// 	},
 	{
 		Version:     2,
+		Description: "Add menus",
+		Script: `
+CREATE TABLE menus (
+	menu_id      UUID,
+	name         TEXT,
+	card_id   UUID,
+	date_created TIMESTAMP,
+	date_updated TIMESTAMP,
+
+	PRIMARY KEY (menu_id),
+	FOREIGN KEY (card_id) REFERENCES cards(card_id) ON DELETE CASCADE
+);`,
+	},
+	{
+		Version:     3,
 		Description: "Add users",
 		Script: `
 CREATE TABLE users (
@@ -60,10 +60,18 @@ CREATE TABLE users (
 );`,
 	},
 	{
-		Version:     3,
+		Version:     4,
 		Description: "Add user column to cards",
 		Script: `
 ALTER TABLE cards
+	ADD COLUMN user_id UUID DEFAULT '00000000-0000-0000-0000-000000000000'
+`,
+	},
+	{
+		Version:     5,
+		Description: "Add user column to menus",
+		Script: `
+ALTER TABLE menus
 	ADD COLUMN user_id UUID DEFAULT '00000000-0000-0000-0000-000000000000'
 `,
 	},
