@@ -19,11 +19,11 @@ docker-compose up -d
 ./cards-admin keygen private.pem
 
 ## Create the schema and insert some seed data.
-./cards-admin --db_disable-tls=1 migrate 
-./cards-admin --db_disable-tls=1 seed
+./cards-admin --db-disable-tls=1 migrate 
+./cards-admin --db-disable-tls=1 seed
 
 ## Run the app then make requests.
-./cards-api --db_disable-tls=1
+./cards-api --db-disable-tls=1
 ```
 
 ## Info
