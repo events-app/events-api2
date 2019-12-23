@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/events-app/events-api2/internal/card"
 	"github.com/events-app/events-api2/internal/platform/auth"
 	"github.com/events-app/events-api2/internal/platform/web"
-	"github.com/events-app/events-api2/internal/card"
 	"github.com/go-chi/chi"
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
@@ -81,19 +81,17 @@ func (c *Cards) Update(ctx context.Context, w http.ResponseWriter, r *http.Reque
 		return errors.Wrap(err, "decoding card update")
 	}
 
-	claims, ok := ctx.Value(auth.Key).(auth.Claims)
-	if !ok {
-		return errors.New("claims missing from context")
-	}
+	// claims, ok := ctx.Value(auth.Key).(auth.Claims)
+	// if !ok {
+	// 	return errors.New("claims missing from context")
+	// }
 
-	if err := card.Update(ctx, c.db, claims, id, update, time.Now()); err != nil {
+	if err := card.Update(ctx, c.db, id, update, time.Now()); err != nil {
 		switch err {
 		case card.ErrNotFound:
 			return web.NewRequestError(err, http.StatusNotFound)
 		case card.ErrInvalidID:
 			return web.NewRequestError(err, http.StatusBadRequest)
-		case card.ErrForbidden:
-			return web.NewRequestError(err, http.StatusForbidden)
 		default:
 			return errors.Wrapf(err, "updating card %q", id)
 		}
@@ -117,33 +115,3 @@ func (c *Cards) Delete(ctx context.Context, w http.ResponseWriter, r *http.Reque
 
 	return web.Respond(ctx, w, nil, http.StatusNoContent)
 }
-
-// // AddSale creates a new Sale for a particular card. It looks for a JSON
-// // object in the request body. The full model is returned to the caller.
-// func (p *Cards) AddSale(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
-// 	var ns card.NewSale
-// 	if err := web.Decode(r, &ns); err != nil {
-// 		return errors.Wrap(err, "decoding new sale")
-// 	}
-
-// 	cardID := chi.URLParam(r, "id")
-
-// 	sale, err := card.AddSale(ctx, p.db, ns, cardID, time.Now())
-// 	if err != nil {
-// 		return errors.Wrap(err, "adding new sale")
-// 	}
-
-// 	return web.Respond(ctx, w, sale, http.StatusCreated)
-// }
-
-// // ListSales gets all sales for a particular card.
-// func (p *Cards) ListSales(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
-// 	id := chi.URLParam(r, "id")
-
-// 	list, err := card.ListSales(ctx, p.db, id)
-// 	if err != nil {
-// 		return errors.Wrap(err, "getting sales list")
-// 	}
-
-// 	return web.Respond(ctx, w, list, http.StatusOK)
-// }

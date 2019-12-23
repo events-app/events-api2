@@ -37,14 +37,13 @@ func API(db *sqlx.DB, log *log.Logger, authenticator *auth.Authenticator) http.H
 
 		app.Handle(http.MethodGet, "/v1/cards", c.List, mid.Authenticate(authenticator))
 		app.Handle(http.MethodGet, "/v1/cards/{id}", c.Retrieve, mid.Authenticate(authenticator))
-		app.Handle(http.MethodPost, "/v1/cards", c.Create, mid.Authenticate(authenticator))
-		app.Handle(http.MethodPut, "/v1/cards/{id}", c.Update, mid.Authenticate(authenticator))
+		app.Handle(http.MethodPost, "/v1/cards", c.Create, mid.Authenticate(authenticator), mid.HasRole(auth.RoleAdmin))
+		app.Handle(http.MethodPut, "/v1/cards/{id}", c.Update, mid.Authenticate(authenticator), mid.HasRole(auth.RoleAdmin))
 		app.Handle(http.MethodDelete, "/v1/cards/{id}", c.Delete, mid.Authenticate(authenticator), mid.HasRole(auth.RoleAdmin))
 
 		// app.Handle(http.MethodPost, "/v1/cards/{id}/sales", c.AddSale, mid.Authenticate(authenticator), mid.HasRole(auth.RoleAdmin))
 		// app.Handle(http.MethodGet, "/v1/cards/{id}/sales", c.ListSales, mid.Authenticate(authenticator))
-	
-	
+
 		// Register Card handlers. Ensure all routes are authenticated.
 		m := Menus{db: db, log: log}
 

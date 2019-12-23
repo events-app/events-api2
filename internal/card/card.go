@@ -78,15 +78,6 @@ func Retrieve(ctx context.Context, db *sqlx.DB, id string) (*Card, error) {
 
 	var c Card
 
-	// const c = `SELECT
-	// 		p.*,
-	// 		COALESCE(SUM(s.quantity), 0) AS sold,
-	// 		COALESCE(SUM(s.paid), 0) AS revenue
-	// 	FROM cards AS p
-	// 	LEFT JOIN sales AS s ON p.card_id = s.card_id
-	// 	WHERE p.card_id = $1
-	// 	GROUP BY p.card_id`
-
 	const q = `SELECT * FROM cards WHERE card_id = $1`
 	if err := db.GetContext(ctx, &c, q, id); err != nil {
 		if err == sql.ErrNoRows {
@@ -101,18 +92,18 @@ func Retrieve(ctx context.Context, db *sqlx.DB, id string) (*Card, error) {
 
 // Update modifies data about a Card. It will error if the specified ID is
 // invalid or does not reference an existing Card.
-func Update(ctx context.Context, db *sqlx.DB, user auth.Claims, id string, update UpdateCard, now time.Time) error {
+func Update(ctx context.Context, db *sqlx.DB, id string, update UpdateCard, now time.Time) error {
 	c, err := Retrieve(ctx, db, id)
 	if err != nil {
 		return err
 	}
 
-	// If you do not have the admin role ...
-	// and you are not the owner of this card ...
-	// then get outta here!
-	if !user.HasRole(auth.RoleAdmin) && c.UserID != user.Subject {
-		return ErrForbidden
-	}
+	// // If you do not have the admin role ...
+	// // and you are not the owner of this card ...
+	// // then get outta here!
+	// if !user.HasRole(auth.RoleAdmin) && c.UserID != user.Subject {
+	// 	return ErrForbidden
+	// }
 
 	if update.Name != nil {
 		c.Name = *update.Name
