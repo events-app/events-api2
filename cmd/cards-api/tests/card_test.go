@@ -59,26 +59,19 @@ func (c *CardTests) List(t *testing.T) {
 	if err := json.NewDecoder(resp.Body).Decode(&list); err != nil {
 		t.Fatalf("decoding: %s", err)
 	}
-	FIX
 	want := []map[string]interface{}{
 		{
 			"id":           "a2b0639f-2cc6-44b8-b97b-15d69dbb511e",
-			"name":         "Comic Books",
-			"cost":         float64(50),
-			"quantity":     float64(42),
-			"revenue":      float64(350),
-			"sold":         float64(7),
+			"name":         "Test card",
+			"content":      "This is the Test card",
 			"user_id":      "00000000-0000-0000-0000-000000000000",
 			"date_created": "2019-01-01T00:00:01.000001Z",
 			"date_updated": "2019-01-01T00:00:01.000001Z",
 		},
 		{
 			"id":           "72f8b983-3eb4-48db-9ed0-e45cc6bd716b",
-			"name":         "McDonalds Toys",
-			"cost":         float64(75),
-			"quantity":     float64(120),
-			"revenue":      float64(225),
-			"sold":         float64(3),
+			"name":         "Other test card",
+			"content":      "This is the Other Test card",
 			"user_id":      "00000000-0000-0000-0000-000000000000",
 			"date_created": "2019-01-01T00:00:02.000001Z",
 			"date_updated": "2019-01-01T00:00:02.000001Z",
@@ -110,7 +103,7 @@ func (c *CardTests) CardCRUD(t *testing.T) {
 	var created map[string]interface{}
 
 	{ // CREATE
-		body := strings.NewReader(`{"name":"card0","cost":55,"quantity":6}`)
+		body := strings.NewReader(`{"name":"card 0","content":"some content"}`)
 
 		req := httptest.NewRequest("POST", "/v1/cards", body)
 		req.Header.Set("Content-Type", "application/json")
@@ -141,11 +134,8 @@ func (c *CardTests) CardCRUD(t *testing.T) {
 			"id":           created["id"],
 			"date_created": created["date_created"],
 			"date_updated": created["date_updated"],
-			"name":         "card0",
-			"cost":         float64(55),
-			"quantity":     float64(6),
-			"sold":         float64(0),
-			"revenue":      float64(0),
+			"name":         "card 0",
+			"content":      "content",
 			"user_id":      tests.AdminID,
 		}
 
@@ -214,10 +204,7 @@ func (c *CardTests) CardCRUD(t *testing.T) {
 			"date_created": created["date_created"],
 			"date_updated": updated["date_updated"],
 			"name":         "new name",
-			"cost":         float64(20),
-			"quantity":     float64(10),
-			"sold":         float64(0),
-			"revenue":      float64(0),
+			"content":      "Content for a new name",
 			"user_id":      tests.AdminID,
 		}
 
@@ -242,7 +229,7 @@ func (c *CardTests) CardCRUD(t *testing.T) {
 		// Retrieve updated record to be sure it worked.
 		req = httptest.NewRequest("GET", url, nil)
 		req.Header.Set("Content-Type", "application/json")
-		req.Header.Set("Authorization", "Bearer "c.adminToken)
+		req.Header.Set("Authorization", "Bearer "+c.adminToken)
 		resp = httptest.NewRecorder()
 
 		c.app.ServeHTTP(resp, req)

@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/events-app/events-api2/internal/platform/auth"
 	"github.com/events-app/events-api2/internal/card"
+	"github.com/events-app/events-api2/internal/platform/auth"
 	"github.com/events-app/events-api2/internal/schema"
 	"github.com/events-app/events-api2/internal/tests"
 	"github.com/google/go-cmp/cmp"
@@ -17,8 +17,8 @@ func TestCards(t *testing.T) {
 	defer teardown()
 
 	newC := card.NewCard{
-		Name:     "New Card",
-		Content:     "This is testing card.",
+		Name:    "New Card",
+		Content: "This is testing card.",
 	}
 	now := time.Date(2019, time.January, 1, 0, 0, 0, 0, time.UTC)
 	ctx := context.Background()
@@ -44,12 +44,12 @@ func TestCards(t *testing.T) {
 	}
 
 	update := card.UpdateCard{
-		Name: tests.StringPointer("New Card"),
+		Name:    tests.StringPointer("New Card"),
 		Content: tests.StringPointer("Some new content of a card"),
 	}
 	updatedTime := time.Date(2019, time.January, 1, 1, 1, 1, 0, time.UTC)
 
-	if err := card.Update(ctx, db, claims, c0.ID, update, updatedTime); err != nil {
+	if err := card.Update(ctx, db, c0.ID, update, updatedTime); err != nil {
 		t.Fatalf("creating card c0: %s", err)
 	}
 
@@ -62,7 +62,6 @@ func TestCards(t *testing.T) {
 	// and change just the fields we expect then diff it with what was saved.
 	want := *c0
 	want.Name = "New Card"
-	want.Cost = 25
 	want.DateUpdated = updatedTime
 
 	if diff := cmp.Diff(want, *saved); diff != "" {
